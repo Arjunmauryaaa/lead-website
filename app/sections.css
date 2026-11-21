@@ -1,0 +1,56 @@
+/* =========================================================
+   Platforms strip, stats band, dual marquee
+   ========================================================= */
+
+/* ---------- Platforms (infinite logo strip) ---------- */
+.platforms__inner { gap: 48px; padding-top: 30px; padding-bottom: 30px; }
+.platforms__label {
+  max-width: 160px; font-size: 12.5px; line-height: 1.45; color: var(--dim);
+  padding-right: 32px; border-right: 1px solid var(--line-2);
+}
+.platforms__label span { display: block; color: var(--text-2); font-weight: 600; font-size: 13px; }
+.platforms__viewport {
+  flex: 1; min-width: 0; overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+}
+.platforms__track { display: flex; width: max-content; animation: marquee 38s linear infinite; }
+.platforms__viewport:hover .platforms__track { animation-play-state: paused; }
+.plat {
+  display: inline-flex; align-items: center; gap: 10px; margin-right: 56px;
+  font-family: var(--head); font-size: 20px; font-weight: 600; letter-spacing: -0.02em; color: #67645e;
+  white-space: nowrap; transition: color 0.35s;
+}
+.plat i {
+  font-style: normal; font-size: 15px; width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center;
+  border: 1px solid var(--line-2); background: var(--surface); color: #77746d;
+  transition: color 0.35s, border-color 0.35s, background 0.35s;
+}
+.plat:hover { color: var(--text); }
+.plat:hover i { color: var(--accent-ink); background: var(--accent); border-color: var(--accent); }
+@media (max-width: 860px) {
+  .platforms__label { border-right: 0; padding-right: 0; max-width: none; }
+  .plat { font-size: 17px; margin-right: 40px; }
+}
+
+/* ---------- Dual marquee ---------- */
+.marquee {
+  padding: 34px 0; display: grid; gap: 14px; border-top: 1px solid var(--line);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.marquee__row { overflow: hidden; }
+.marquee__row--alt .marquee__track { animation-direction: reverse; animation-duration: 60s; }
+.marquee__row--alt span {
+  font-size: clamp(20px, 2.4vw, 30px); color: transparent; -webkit-text-stroke: 1px rgba(236, 232, 225, 0.22);
+  font-family: var(--head); font-style: normal; font-weight: 600;
+}
+.marquee__row--alt span:nth-child(even) { font-family: var(--head); -webkit-text-stroke: 1px rgba(201, 180, 138, 0.4); }
+.marquee__row--alt i { -webkit-text-stroke: 0; color: var(--dim); }
+.marquee span { transition: color 0.3s; }
+.marquee__row:not(.marquee__row--alt) span:hover { color: var(--text); }
+
+@media (prefers-reduced-motion: reduce) {
+  .platforms__track { animation: none; flex-wrap: wrap; }
+  .stat2 { opacity: 1; translate: none; }
+}
